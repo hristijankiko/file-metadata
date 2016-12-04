@@ -11,6 +11,10 @@ app.get('/', function(req, res){
 });
 
 app.post('/get-file-size', upload.single('inputFile'), function(req, res, next){
+  if(!req.file){
+    res.send("No file uploaded.");
+    return;
+  }
   res.json({size: req.file.size});
 });
 
